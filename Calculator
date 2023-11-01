@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.0.0/math.js"></script>
+
+  <title>Calculator</title>
+
+
+  <style>
+    .clear {
+        background-color: darkcyan;
+        color: white;
+        width: 70px;
+        height: 50px;
+        
+    }
+    .result {
+        background-color: white;
+        width: 202px;
+        height: 45px;
+        
+    }
+    .button {
+        background-color: black;
+        color: aliceblue;
+        width: 70px;
+        height: 40px;
+        border: none;
+    }
+    .symbols-button {
+        background-color: grey;
+        color: white;
+        height: 40px;
+        width: 70px;
+        border: none;
+    }
+    .numbers {
+        display: flex;
+    }
+    .symbols {
+        display: grid;
+    }
+  </style>
+
+
+
+  <script> 
+         
+    function dis(val) { 
+        document.getElementById("result").value += val 
+    } 
+
+    function numberFunction(event) { 
+        if (event.key == '0' || event.key == '1' 
+            || event.key == '2' || event.key == '3' 
+            || event.key == '4' || event.key == '5' 
+            || event.key == '6' || event.key == '7' 
+            || event.key == '8' || event.key == '9' 
+            || event.key == '+' || event.key == '-' 
+            || event.key == '*' || event.key == '/') 
+            document.getElementById("result").value += event.key; 
+    } 
+
+    var cal = document.getElementById("calcu"); 
+    cal.onkeyup = function (event) { 
+        if (event.keyCode === 13) { 
+            console.log("Enter"); 
+            let x = document.getElementById("result").value 
+            console.log(x); 
+            solve(); 
+        } 
+    } 
+
+     
+    function solve() { 
+        let x = document.getElementById("result").value 
+        let y = math.evaluate(x) 
+        document.getElementById("result").value = y 
+    } 
+
+     
+    function clr() { 
+        document.getElementById("result").value = "" 
+    } 
+</script> 
+ </head>
+ <body>
+    <div class="main">
+        <div style="display: flex;">
+           
+            <input type="text" class="result" id = "result">
+            
+            <input type="button" class="clear" value="AC" onclick="clr()">
+            
+        </div>
+        <div style="display: flex;">
+            <div >
+                <div class="numbers">
+                    <input type="button" class="button" value = '7' onclick="dis('7')" onkeydown="numberFunction(event)">
+                    <input type="button" class="button" value = '8' onclick="dis('8')" onkeydown="numberFunction(event)">
+                    <input type="button" class="button" value = '9' onclick="dis('9')" onkeydown="numberFunction(event)">
+                </div>
+                <div class="numbers">
+                    <input type="button" class="button" value = '4' onclick="dis('4')" onkeydown="numberFunction(event)">
+                    <input type="button" class="button" value = '5' onclick="dis('5')" onkeydown="numberFunction(event)">
+                    <input type="button" class="button" value = '6' onclick="dis('6')" onkeydown="numberFunction(event)">
+                </div>
+                <div class="numbers">
+                    <input type="button" class="button" value = '1' onclick="dis('1')" onkeydown="numberFunction(event)">
+                    <input type="button" class="button" value = '2' onclick="dis('2')" onkeydown="numberFunction(event)">
+                    <input type="button" class="button" value = '3' onclick="dis('3')" onkeydown="numberFunction(event)">
+                </div>
+                <div class="numbers">
+                    <input type="button" class="button" value = '.' onclick="dis('.')" onkeydown="numberFunction(event)">
+                    <input type="button" class="button" value = '0' onclick="dis('0')" onkeydown="numberFunction(event)">
+                    <input type="button" class="button" value = '=' onclick="solve()" >
+                </div>
+            </div>
+            <div class="symbols">
+                <input type="button" class="symbols-button" value = '+' onclick="dis('+')" onkeydown="numberFunction(event)">
+                <input type="button" class="symbols-button" value = '-' onclick="dis('-')" onkeydown="numberFunction(event)">
+                <input type="button" class="symbols-button" value = '/' onclick="dis('/')" onkeydown="numberFunction(event)">
+                <input type="button" class="symbols-button" value = 'x' onclick="dis('*')" onkeydown="numberFunction(event)">
+            </div>
+        </div>
+    </div>
+  
+ </body>
+</html>
