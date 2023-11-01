@@ -1,0 +1,50 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+function descendingSort(arr) {
+    const len = arr.length;
+    for (let i = 0; i < len - 1; i++) {
+      for (let j = 0; j < len - 1 - i; j++) {
+        if (arr[j] < arr[j + 1]) {
+          const temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+        }
+      }
+    }
+  }
+  
+  rl.question('Enter the size of the array: ', (sizeInput) => {
+    const size = parseInt(sizeInput);
+    if (isNaN(size)) {
+      console.log('Invalid input. Please enter a valid number for the size.');
+      rl.close();
+      return;
+    }
+  
+    const array = [];
+  
+    function inputArrayValue(index) {
+      if (index < size) {
+        rl.question(`Enter element ${index + 1}: `, (elementInput) => {
+          const element = parseInt(elementInput);
+          if (isNaN(element)) {
+            console.log('Invalid input. Please enter a valid number for the element.');
+          } else {
+            array.push(element);
+            inputArrayValue(index + 1);
+          }
+        });
+      } else {
+        rl.close();
+        descendingSort(array);
+        console.log(array);
+      }
+    }
+  
+    inputArrayValue(0);
+  });
